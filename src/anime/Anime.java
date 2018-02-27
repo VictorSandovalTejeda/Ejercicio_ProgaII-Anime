@@ -17,15 +17,56 @@ public class Anime {
     /**
      * @param args the command line arguments
      */
+    private static int arraySize = 3;
+    private static Animes[] arregloAnime = new Animes[arraySize];
+    private static Scanner sc = new Scanner(System.in);
+
+    public static boolean checkArraySize() {
+        for (int i = 0; i < arregloAnime.length; i++) {
+            if (arregloAnime[i] == null) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public static int getArrayPosition (){
+        for (int i = 0; i < arregloAnime.length; i++) {
+            if (arregloAnime[i] == null) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static void opcionEstudios() {
+        if (checkArraySize()) {
+            String nombreAnime, horarioAnime, creadoraAnime;
+
+            System.out.println(".......Menu Estudio.......");
+            sc.nextLine();
+            System.out.println("Ingrese nombre de Anime:");
+            nombreAnime = sc.nextLine();
+            System.out.println("Ingrese horario del Anime ( Inicio-Fin | Ej: 16-20 ):");
+            horarioAnime = sc.nextLine();
+            System.out.println("Ingrese Estudio Creadora del Anime:");
+            creadoraAnime = sc.nextLine();
+            System.out.println("..........................");
+            System.out.println();
+            Animes anime = new Animes(nombreAnime, horarioAnime, creadoraAnime);
+            arregloAnime[getArrayPosition()] = anime;
+        } else {
+            System.out.println("No hya horarios disponibles para su anime");
+
+        }
+    }
+
     public static void main(String[] args) {
         // TODO code application logic here
-        
-        Scanner sc = new Scanner(System.in);
         int opcion = 0;
-        String nombreAnime, horarioAnime, creadoraAnime;
-        
-        do{
-            try{
+
+        do {
+            try {
                 System.out.println("__________________________");
                 System.out.println("___________MENU___________");
                 System.out.println("Opcion >1 --- Estudios");
@@ -35,33 +76,25 @@ public class Anime {
                 System.out.print(">>");
                 System.out.println();
                 opcion = sc.nextInt();
-                
-                switch (opcion){
+
+                switch (opcion) {
                     case 1:
-                        System.out.println(".......Menu Estudio.......");
-                        System.out.print("Ingrese nombre de Anime >");
-                        nombreAnime = sc.nextLine();
-                        System.out.print("Ingrese horario del Anime ( Inicio-Fin | Ej: 16-20 ) >");
-                        horarioAnime = sc.nextLine();
-                        System.out.print("Ingrese Estudio Creadora del Anime >");
-                        creadoraAnime = sc.nextLine();
-                        System.out.println("..........................");
-                        System.out.println();
+                        opcionEstudios();
                         break;
                     case 2:
-                        
+
                         break;
                     case 3:
-                        
+
                         break;
                     default:
                         System.out.println("Opcion no Valida");
                 }
-            }catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 System.out.print("Ingreso un valor no numérico");
                 sc.next();
             }
-        }while(opcion!=3);
+        } while (opcion != 3);
     }
-    
+
 }
