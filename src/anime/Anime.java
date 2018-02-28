@@ -29,8 +29,8 @@ public class Anime {
         }
         return false;
     }
-    
-    public static int getArrayPosition (){
+
+    public static int getArrayPosition() {
         for (int i = 0; i < arregloAnime.length; i++) {
             if (arregloAnime[i] == null) {
                 return i;
@@ -42,13 +42,22 @@ public class Anime {
     public static void opcionEstudios() {
         if (checkArraySize()) {
             String nombreAnime, horarioAnime, creadoraAnime;
+            boolean timeValidation = false;
 
             System.out.println(".......Menu Estudio.......");
             sc.nextLine();
             System.out.println("Ingrese nombre de Anime:");
             nombreAnime = sc.nextLine();
-            System.out.println("Ingrese horario del Anime ( Inicio-Fin | Ej: 16-20 ):");
-            horarioAnime = sc.nextLine();
+            do {
+                System.out.println("Ingrese horario del Anime ( Inicio-Fin | Ej: 16:00-20:59 ):");
+                horarioAnime = sc.nextLine();
+                timeValidation = horarioAnime.matches("\\d{2}:\\d{2}-\\d{2}:\\d{2}");
+                if (timeValidation == false) {
+                    System.out.println("**FORMATO INCORRECTO");
+                }else{
+                    
+                }
+            } while (timeValidation == false);
             System.out.println("Ingrese Estudio Creadora del Anime:");
             creadoraAnime = sc.nextLine();
             System.out.println("..........................");
