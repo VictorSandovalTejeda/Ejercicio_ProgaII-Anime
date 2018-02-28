@@ -43,6 +43,7 @@ public class Anime {
         if (checkArraySize()) {
             String nombreAnime, horarioAnime, creadoraAnime;
             boolean timeValidation = false;
+            int sequence1, sequence2, sequence3, sequence4;
 
             System.out.println(".......Menu Estudio.......");
             sc.nextLine();
@@ -54,8 +55,17 @@ public class Anime {
                 timeValidation = horarioAnime.matches("\\d{2}:\\d{2}-\\d{2}:\\d{2}");
                 if (timeValidation == false) {
                     System.out.println("**FORMATO INCORRECTO");
-                }else{
-                    
+                } else {
+                    sequence1 = Integer.parseInt(horarioAnime.subSequence(0, 2).toString());
+                    sequence2 = Integer.parseInt(horarioAnime.subSequence(3, 5).toString());
+                    sequence3 = Integer.parseInt(horarioAnime.subSequence(6, 8).toString());
+                    sequence4 = Integer.parseInt(horarioAnime.subSequence(9, 11).toString());
+
+                    if (((sequence1 < 0 || sequence1 >= 24) || (sequence3 < 0 || sequence3 >= 24))
+                            || (sequence3 < sequence1) || ((sequence1 == sequence3) && (sequence4 <= sequence2))) {
+                        System.out.println("**HORAS NO VALIDAS O FUERA DE RANGO");
+                        timeValidation = false;
+                    }
                 }
             } while (timeValidation == false);
             System.out.println("Ingrese Estudio Creadora del Anime:");
@@ -83,7 +93,6 @@ public class Anime {
                 System.out.println("Opcion >3 --- Salir");
                 System.out.println("__________________________");
                 System.out.print(">>");
-                System.out.println();
                 opcion = sc.nextInt();
 
                 switch (opcion) {
