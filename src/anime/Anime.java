@@ -38,6 +38,16 @@ public class Anime {
         }
         return -1;
     }
+    
+    public static boolean isArrayEmpty() {
+        int contador = 0;
+        for (int i = 0; i < arraySize; i++) {
+            if (arregloAnime[i] == null) {
+                contador++;
+            }
+        }
+        return contador == arraySize;
+    }
 
     public static void opcionEstudios() {
         if (checkArraySize()) {
@@ -62,7 +72,8 @@ public class Anime {
                     sequence4 = Integer.parseInt(horarioAnime.subSequence(9, 11).toString());
 
                     if (((sequence1 < 0 || sequence1 >= 24) || (sequence3 < 0 || sequence3 >= 24))
-                            || (sequence3 < sequence1) || ((sequence1 == sequence3) && (sequence4 <= sequence2))) {
+                            || (sequence3 < sequence1) || ((sequence1 == sequence3) && (sequence4 <= sequence2)) ||
+                            (sequence2 > 59 || sequence4 > 59) ) {
                         System.out.println("**HORAS NO VALIDAS O FUERA DE RANGO");
                         timeValidation = false;
                     }
@@ -75,9 +86,24 @@ public class Anime {
             Animes anime = new Animes(nombreAnime, horarioAnime, creadoraAnime);
             arregloAnime[getArrayPosition()] = anime;
         } else {
-            System.out.println("No hya horarios disponibles para su anime");
+            System.out.println("No hay horarios disponibles para su anime");
 
         }
+    }
+    
+    public static boolean existeAnime(String anime){
+        for (int i = 0; i < arraySize; i++) {
+            if (arregloAnime[i].getNombreAnime().equalsIgnoreCase(anime)) {
+                
+            }
+            
+        }
+        
+        return false;
+    }
+    
+    public static void opcionTelevisora() {
+        
     }
 
     public static void main(String[] args) {
